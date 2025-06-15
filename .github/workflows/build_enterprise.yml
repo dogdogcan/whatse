@@ -58,7 +58,9 @@ jobs:
           ELEMENT_CALL_POSTHOG_API_HOST: ${{ secrets.ELEMENT_CALL_POSTHOG_API_HOST }}
           ELEMENT_CALL_POSTHOG_API_KEY: ${{ secrets.ELEMENT_CALL_POSTHOG_API_KEY }}
           ELEMENT_CALL_RAGESHAKE_URL: ${{ secrets.ELEMENT_CALL_RAGESHAKE_URL }}
-        run: ./gradlew :app:assembleGplayDebug -PallWarningsAsErrors=true $CI_GRADLE_ARG_PROPERTIES
+        run: chmod +x gradlew
+        run: chmod +x gradlew
+run: ./gradlew :app:assembleGplayDebug -PallWarningsAsErrors=true $CI_GRADLE_ARG_PROPERTIES
       - name: Upload debug Enterprise APKs
         if: ${{ matrix.variant == 'debug' }}
         uses: actions/upload-artifact@v4
@@ -68,7 +70,9 @@ jobs:
             app/build/outputs/apk/gplay/debug/*-universal-debug.apk
       - name: Compile nightly and release sources
         if: ${{ matrix.variant == 'release' }}
-        run: ./gradlew compileReleaseSources -PallWarningsAsErrors=true $CI_GRADLE_ARG_PROPERTIES
+        run: chmod +x gradlew
+run: ./gradlew compileReleaseSources -PallWarningsAsErrors=true $CI_GRADLE_ARG_PROPERTIES
       - name: Compile nightly sources
         if: ${{ matrix.variant == 'nightly' }}
-        run: ./gradlew compileGplayNightlySources -PallWarningsAsErrors=true $CI_GRADLE_ARG_PROPERTIES
+        run: chmod +x gradlew
+run: ./gradlew compileGplayNightlySources -PallWarningsAsErrors=true $CI_GRADLE_ARG_PROPERTIES

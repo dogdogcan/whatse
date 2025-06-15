@@ -94,7 +94,8 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/develop' }}
       - name: Run Konsist tests
-        run: ./gradlew :tests:konsist:testDebugUnitTest $CI_GRADLE_ARG_PROPERTIES --no-daemon
+        run: chmod +x gradlew
+run: ./gradlew :tests:konsist:testDebugUnitTest $CI_GRADLE_ARG_PROPERTIES --no-daemon
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -135,13 +136,16 @@ jobs:
           cache-read-only: ${{ github.ref != 'refs/heads/develop' }}
       - name: Build Gplay Debug
         run: chmod +x gradlew
-        run: ./gradlew :app:compileGplayDebugKotlin $CI_GRADLE_ARG_PROPERTIES
+        run: chmod +x gradlew
+run: ./gradlew :app:compileGplayDebugKotlin $CI_GRADLE_ARG_PROPERTIES
       - name: Build Fdroid Debug
         run: chmod +x gradlew
-        run: ./gradlew :app:compileFdroidDebugKotlin $CI_GRADLE_ARG_PROPERTIES
+        run: chmod +x gradlew
+run: ./gradlew :app:compileFdroidDebugKotlin $CI_GRADLE_ARG_PROPERTIES
       - name: Run lint
         run: chmod +x gradlew
-        run: ./gradlew :app:lintGplayDebug :app:lintFdroidDebug lintDebug $CI_GRADLE_ARG_PROPERTIES --continue
+        run: chmod +x gradlew
+run: ./gradlew :app:lintGplayDebug :app:lintFdroidDebug lintDebug $CI_GRADLE_ARG_PROPERTIES --continue
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -181,7 +185,8 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/develop' }}
       - name: Run Detekt
-        run: ./gradlew detekt $CI_GRADLE_ARG_PROPERTIES --no-daemon
+        run: chmod +x gradlew
+run: ./gradlew detekt $CI_GRADLE_ARG_PROPERTIES --no-daemon
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -221,7 +226,8 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/develop' }}
       - name: Run Ktlint check
-        run: ./gradlew ktlintCheck $CI_GRADLE_ARG_PROPERTIES
+        run: chmod +x gradlew
+run: ./gradlew ktlintCheck $CI_GRADLE_ARG_PROPERTIES
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -261,7 +267,8 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/develop' }}
       - name: Run Knit
-        run: ./gradlew knitCheck $CI_GRADLE_ARG_PROPERTIES
+        run: chmod +x gradlew
+run: ./gradlew knitCheck $CI_GRADLE_ARG_PROPERTIES
 
   # Note: to auto fix issues you can use the following command:
   # shellcheck -f diff <files> | git apply

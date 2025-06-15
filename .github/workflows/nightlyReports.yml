@@ -33,16 +33,16 @@ jobs:
 
       - name: ⚙️ Run unit tests, debug and release
         run: chmod +x gradlew
-run: ./gradlew test $CI_GRADLE_ARG_PROPERTIES
+        run: ./gradlew test $CI_GRADLE_ARG_PROPERTIES
 
       - name: 📸 Run screenshot tests
         run: chmod +x gradlew
-run: ./gradlew verifyPaparazziDebug $CI_GRADLE_ARG_PROPERTIES
+        run: ./gradlew verifyPaparazziDebug $CI_GRADLE_ARG_PROPERTIES
 
       - name: 📈 Generate kover report and verify coverage
         run: chmod +x gradlew
         run: chmod +x gradlew
-run: ./gradlew :app:koverXmlReportGplayDebug :app:koverHtmlReportGplayDebug :app:koverVerifyAll $CI_GRADLE_ARG_PROPERTIES
+        run: ./gradlew :app:koverXmlReportGplayDebug :app:koverHtmlReportGplayDebug :app:koverVerifyAll $CI_GRADLE_ARG_PROPERTIES
 
       - name: ✅ Upload kover report
         if: always()
@@ -58,7 +58,7 @@ run: ./gradlew :app:koverXmlReportGplayDebug :app:koverHtmlReportGplayDebug :app
           ORG_GRADLE_PROJECT_SONAR_LOGIN: ${{ secrets.SONAR_TOKEN }}
         if: ${{ always() && env.SONAR_TOKEN != '' && env.ORG_GRADLE_PROJECT_SONAR_LOGIN != '' }}
         run: chmod +x gradlew
-run: ./gradlew assembleDebug createFullJarDebugTestFixtures :app:createFullJarGplayDebugTestFixtures $CI_GRADLE_ARG_PROPERTIES
+        run: ./gradlew assembleDebug createFullJarDebugTestFixtures :app:createFullJarGplayDebugTestFixtures $CI_GRADLE_ARG_PROPERTIES
 
   # Gradle dependency analysis using https://github.com/autonomousapps/dependency-analysis-android-gradle-plugin
   dependency-analysis:
@@ -77,7 +77,7 @@ run: ./gradlew assembleDebug createFullJarDebugTestFixtures :app:createFullJarGp
           cache-read-only: ${{ github.ref != 'refs/heads/develop' }}
       - name: Dependency analysis
         run: chmod +x gradlew
-run: ./gradlew dependencyCheckAnalyze $CI_GRADLE_ARG_PROPERTIES
+        run: ./gradlew dependencyCheckAnalyze $CI_GRADLE_ARG_PROPERTIES
       - name: Upload dependency analysis
         if: always()
         uses: actions/upload-artifact@v4
